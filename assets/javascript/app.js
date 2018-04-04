@@ -176,48 +176,4 @@ var game = {
 
 // function submitAnswers() {
 
-// $(".quizForm").on("click", function()
-// {
-//     alert($('label[for=inlineRadio1]:checked ','.form-check form-check-inline').for());
-// })
 
-// }
-
-// // Function that updates the score...
-// function updateScore() {
-//     document.querySelector("#score").innerHTML = "Score: " + score;
-//   }
-
-//   // Calling functions to start the game.
-//      renderQuestion();
-//      updateScore();
-
-//     // If there are no more questions, stop the function.
-//         if (questionIndex === questionsArray.length) {
-//           return; //this will exit the functioin once the count of the questions has cycled all they way thru
-//         }
-
-//           // Here we use jQuery to select the header with "click-me" as its ID.
-//       // Notice I have the click, #click-me, and then the function
-//       // So action, id|class|element, function
-//       // And so whenever it is clicked...
-//       $("body").on("click", "#click-me", function() {
-//         alert("I've been clicked!");
-//       });
-
-//     });
-
-//  // For Loop???
-//       // ==============================================================================
-//     for (var i = 0; i < 4; i++) {
-//         var crystalCollectors = $("<div>"); //assign a new divs
-//         crystalCollectors.attr("class", "crystalCollectors"); //give div a class
-//         $(".crystal-container").append(crystalCollectors); // append new div to a containter
-//         randomNumber = Math.floor(Math.random() * 12) + 1;
-//         //  console.log(randomNumber);
-//  //
-//         crystalCollectors.addClass("crystal number");
-//         crystalCollectors.attr("data-number", randomNumber); //set value of each crystal
-//         // crystalCollectors.text(randomNumber);
-
-//         crystalCollectors.css("background-image", "url('" + images[i] + "')");
