@@ -1,28 +1,25 @@
 // alert("good connection to html!");
-
 $(".start-button").on("click", function() {
   game.start();
-
   // console.log("I've been click");
 });
-
 //**create question in an object that you will need to access */
 var questions = [
   {
     question:
       "In the movie Top Gun, Tom Cruises had an initial flight partner (R.I.O) who died while out on a flight exercised named?",
     choices: [
-      " LT Pete 'Maverick' Mitchell",
-      " LT Bill 'Cougar' Cortell",
-      " LT Nick 'Goose' Bradshaw"
+      " LT Pete \"Maverick\" Mitchell",
+      " LT Bill \"Cougar\" Cortell",
+      " LT Nick \"Goose\" Bradshaw"
     ],
-    correctAnswer: 2
+    correctAnswer: " LT Nick \"Goose\" Bradshaw"
   },
   {
     question:
       "Never say Never Again was the last time this actor would play the heralded British spy super agent 007?",
     choices: [" Roger Moore", " Sean Connery", " Pierce Brosnan"],
-    correctAnswer: 1
+    correctAnswer: " Sean Connery"
   },
   {
     question:
@@ -32,25 +29,23 @@ var questions = [
       " In Living Color",
       " Saturday Night Live"
     ],
-    correctAnswer: 2
+    correctAnswer: " Saturday Night Live"
   },
   {
     question:
       "Angelina Jolie, an American actress, filmmaker, and humanitarian has a famous father named?",
     choices: [" Don Jolie", " Jon Voight", " Don Ameche"],
-    correctAnswer: 1
+    correctAnswer: " Jon Voight"
   },
   {
     question:
       "In the movie Pretty woman, Vivian (Julia Roberts) and Edward (Richard Gere)  jet set off to see this Italian operatic play in which Vivian is moved to tears?",
     choices: [" Madama Butterfly", " La Traviata", " La Gioconda"],
-    correctAnswer: 1
+    correctAnswer: " La Traviata"
   }
 ];
-
-// console.log(questions[0].question);
-// console.log(questions[1].choices[2]);
-
+console.log(questions[0].question);
+console.log(questions[1].choices[2]);
 // GLOBAL VARIABLES
 // ==========================================================================
 var game = {
@@ -77,16 +72,31 @@ var game = {
         $("#start-container").append(
           "<input type = 'radio' name='questions-" +
             i +
-            "'value=" +
+            "' value='" +
             questions[i].choices[j] +
-            "'>" +
+            "'>" 
+            // "' value='" + questions[i].answers[j] + "''>"
+            +
             questions[i].choices[j]
         );
       }
     }
   },
   done: function() {
-    $.each($("input[name='questions-0'] :checked"), function() {
+    // $.each($("input[name='question-0']:checked"), function() {
+    //   if ($(this).val() === questions[0].correctAnswer) {
+    //     game.correct++;
+    //   }
+    //   else {
+    //     game.incorrect++;
+    //   }
+    // });
+    $.each($("input[name='questions-0']:checked"), function() {
+    
+      console.log("this.val");
+      console.log($(this).val());
+      console.log("questions[0].correctAnswer");
+      console.log(questions[0].correctAnswer);
       if ($(this).val() == questions[0].correctAnswer) {
         game.correctAnswers++;
         console.log("Correct " + game.correctAnswers);
@@ -95,8 +105,11 @@ var game = {
         console.log("Incorrect " + game.correctAnswers);
       }
     });
-
-    $.each($("input[name='questions-1'] :checked"), function() {
+    $.each($('input[name="questions-1"]:checked'), function() {
+      console.log("this.val");
+      console.log($(this).val());
+      console.log("questions[0].correctAnswer");
+      console.log(questions[0].correctAnswer);
       if ($(this).val() == questions[1].correctAnswer) {
         game.correctAnswers++;
         console.log("Correct " + game.correctAnswers);
@@ -105,7 +118,12 @@ var game = {
         console.log("Incorrect " + game.correctAnswers);
       }
     });
-    $.each($("input[name='questions-2'] :checked"), function() {
+    $.each($('input[name="questions-2"]:checked'), function() {
+      console.log("this.val");
+      console.log($(this).val());
+      console.log("questions[0].correctAnswer");
+      console.log(questions[0].correctAnswer);
+      
       if ($(this).val() == questions[2].correctAnswer) {
         game.correctAnswers++;
         console.log("Correct " + game.correctAnswers);
@@ -114,8 +132,7 @@ var game = {
         console.log("Incorrect " + game.correctAnswers);
       }
     });
-
-    $.each($("input[name='questions-3'] :checked"), function() {
+    $.each($('input[name="questions-3"]:checked'), function() {
       if ($(this).val() == questions[3].correctAnswer) {
         game.correctAnswers++;
         console.log("Correct " + game.correctAnswers);
@@ -124,8 +141,7 @@ var game = {
         console.log("Incorrect " + game.correctAnswers);
       }
     });
-
-    $.each($("input[name='questions-4'] :checked"), function() {
+    $.each($('input[name="questions-4"]:checked'), function() {
       if ($(this).val() == questions[4].correctAnswer) {
         game.correctAnswers++;
         console.log("Correct " + game.correctAnswers);
@@ -134,54 +150,14 @@ var game = {
         console.log("Incorrect " + game.correctAnswers);
       }
     });
-
-    this.result();
-  },
-
-  result: function() {
-    clearInterval(timer);
-    $("#start-container h2").remove();
-
-    $("#start-container").html("<h2>All done!</h2>");
-    $("#start-container").append(
-      "<h3>Correct Answer: " + this.correctAnswers + "</h3>"
-    );
-    $("#start-container").append(
-      "<h3>InCorrect Answer: " + this.incorrectAnswers + "</h3>"
-    );
-    $("#start-container").append(
-      "<h3>Unanswered: " +
-        (questions.length - (this.incorrectAnswers + this.correctAnswers)) +
-        "</h3>"
-    );
+    // this.result(); {
+      clearInterval(timer);
+      $("#start-container").empty();
+      $("#start-container h2").remove();
+      $("#start-container").html("<h2>Game Over!</h2>");
+      $("#start-container").append("<h3>Correct Answer: "+this.correctAnswers+"</h3>");
+      $("#start-container").append("<h3>InCorrect Answer: "+this.incorrectAnswers+"</h3>");
+      $("#start-container").append("<h3>Unanswered: "+(questions.length-(this.incorrectAnswers+this.correctAnswers))+"</h3>");
+    // }
   }
 };
-
-// var currentQuestion = 0;
-// var correctAnswers = 0;
-// var unAnswered = 0;
-// var quizOver = false;
-
-// FUNCTIONS
-// ==============================================================================
-// $(document).ready(function () {
-
-// Create a function/click event that starts the quiz
-
-// Create a function that moves from the click of the start, to the first set of questions and/or
-//produces all of the questions dynamically/ and the goes to the results when comeplete.
-
-//Create jQuery method that dynamically produces questions inside of an element
-
-//Create countdown timer functionality
-
-//Create if statements that will determine if questions have been answered correctly or incorrectly, or not at all
-
-//Find a way to create buttons for each answer set dynamically, as well as functionality that will capture the input value
-// of the correct, incorrect, and unanswered values
-
-//Place text of questions, answers, buttons, results on the page.
-
-//Create function that ends the game
-
-// function submitAnswers() {
